@@ -16,16 +16,12 @@ def execute_query(conn,query):
 def check_connection():
     if 'connection' not in st.session_state:
         st.session_state['connection'] = False
-
-    if st.sidebar.button("Connect To DB"):
         myconn = connect_db()
         if myconn:
             st.session_state['connection'] =  myconn
         else:
-            st.sidebar.error("Error connecting to DB")
-
-    if st.session_state['connection']:
-        st.sidebar.success('Connected to DB')
+            st.error("Error connecting to DB")
+    else:
         return True
 
 #Show numbers in a more compact form
